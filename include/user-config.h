@@ -27,7 +27,7 @@ extern void notFound(AsyncWebServerRequest *request);
 #define TOPTREE "HB7/UG/Heating/Sensors/"
 
 // OneWire Settings
-#define PIN_OWDATA 4                       // GPIO for OneWire communication (Note: high GPIOs >36 may not work!)
+#define PIN_OWDATA 5                       // GPIO for OneWire communication (Note: high GPIOs >36 may not work!)
 #define OWRES 9                            // Use 9 bits resolution (0.5°C)
 #define MAX_OW_SENS 5                      // max amount of DS18B20 sensors connected
 extern float OW_temperatures[MAX_OW_SENS]; // array for sensor temperatures
@@ -43,16 +43,5 @@ extern const char *Stat_Decoder[];           // helper array for OW status text 
 // webserver stuff
 extern const char *PARAM_MESSAGE;
 extern const char *index_html;
-
-//
-// Use RTC RAM to store Variables that should survive DeepSleep
-//
-// ATTN: define KEEP_RTC_SLOWMEM or vars will be lost (PowerDomain disabled)
-// #define KEEP_RTC_SLOWMEM
-
-#ifdef KEEP_RTC_SLOWMEM
-// Example
-extern RTC_DATA_ATTR int SaveMe;
-#endif
 
 #endif // USER_CONFIG_H

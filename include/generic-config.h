@@ -10,7 +10,7 @@
 //
 // Firmware Version Information
 //
-#define FIRMWARE_NAME "PIO ESP32 Template"
+#define FIRMWARE_NAME "PIO-ESP32-OneWireTemp"
 #define FIRMWARE_VERSION "1.0.0" // Add firmware version info of your custom code here
 #define TEMPLATE_VERSION "1.4.0"
 

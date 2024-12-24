@@ -116,7 +116,6 @@ void user_loop()
     }
     LastReadout = UptimeSeconds;
 #ifdef ONBOARD_LED
-    // Toggle LED at each loop
     ToggleLed(LED, 1, 1);
 #endif
   }
@@ -124,14 +123,14 @@ void user_loop()
   // Publish stuff to MQTT broker
   if ((JustBooted) || (UptimeSeconds - LastPub) >= MQTT_PUB_SEC)
   {
-    mqttClt.publish(t_OW_Stat_T, String(Stat_Decoder[OW_Status]).c_str(), true);
+    mqttClt.publish(t_OW_Stat_T, String(Stat_Decoder[OW_Status]).c_str(), false);
 
     if (OW_Status == 0)
     {
       for (int i = 0; i < (int)OWtemp.getDeviceCount(); i++)
       {
         String MqttTopStr = String(t_OW_T_Templ) + i;
-        mqttClt.publish(MqttTopStr.c_str(), String(OW_temperatures[i], 0).c_str(), true);
+        mqttClt.publish(MqttTopStr.c_str(), String(OW_temperatures[i], 0).c_str(), false);
         yield();
       }
     }
@@ -182,7 +181,7 @@ String processor(const String &var)
     }
     else
     {
-      return F("<b><font color=\"red\">No Sensors connected!</font></b>");
+      return F("<b><font color=\"red\">No Sensors found!</font></b>");
     }
   }
   return String();
