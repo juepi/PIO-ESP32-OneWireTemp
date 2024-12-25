@@ -121,7 +121,7 @@ void user_loop()
   }
 
   // Publish stuff to MQTT broker
-  if ((JustBooted) || (UptimeSeconds - LastPub) >= MQTT_PUB_SEC)
+  if (((JustBooted) || (UptimeSeconds - LastPub) >= MQTT_PUB_SEC) && NetState == NET_UP)
   {
     mqttClt.publish(t_OW_Stat_T, String(Stat_Decoder[OW_Status]).c_str(), false);
 

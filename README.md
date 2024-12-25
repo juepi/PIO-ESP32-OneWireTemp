@@ -21,3 +21,6 @@ The website shows WiFi connection quality, MQTT connection status as well as One
 
 ### v1.0.0
 - Tested with 3 DS18B20 sensors
+
+### v1.0.1
+- Bugfix handling network outages (no MQTT publishing)
