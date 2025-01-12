@@ -23,4 +23,8 @@ The website shows WiFi connection quality, MQTT connection status as well as One
 - Tested with 3 DS18B20 sensors
 
 ### v1.0.1
-- Bugfix handling network outages (no MQTT publishing)
+- Bugfix handling network outages (no MQTT publishing if not connected)
+
+### v1.0.2
+- Possible bugfix in template for endless loop while trying to subscribe to topics
+- Added additional infos in WebUI

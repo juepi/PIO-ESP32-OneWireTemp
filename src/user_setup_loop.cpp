@@ -11,12 +11,13 @@ const char *index_html PROGMEM = R"(
 <!DOCTYPE html>
 <html>
 <head>
-    <title>OneWire Temperatures</title>
+    <title>OneWire Temperatures v%TEMPL_VERSION%</title>
     <meta http-equiv="refresh" content="5" />
 </head>
 <body>
     <h3>System Status</h3>
 <p>
+<b>NetState:</b> %TEMPL_NETST%<br>
 <b>WiFi RSSI:</b> %TEMPL_WIFI_RSSI% dBm<br>
 <b>MQTT:</b> %TEMPL_MQTT_STAT%<br>
 <b>Uptime:</b> %TEMPL_UPTIME%<br>
@@ -151,10 +152,14 @@ void notFound(AsyncWebServerRequest *request)
 //
 String processor(const String &var)
 {
+  if (var == "TEMPL_VERSION")
+    return (String(FIRMWARE_VERSION));
   if (var == "TEMPL_WIFI_RSSI")
     return (String(WiFi.RSSI()));
   if (var == "TEMPL_UPTIME")
     return (String(UptimeSeconds));
+  if (var == "TEMPL_NETST")
+    return (String(NetState));
   if (var == "TEMPL_MQTT_STAT")
   {
     if (mqttClt.connected())
